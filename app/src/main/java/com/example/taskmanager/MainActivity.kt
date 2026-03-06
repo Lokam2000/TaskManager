@@ -1,13 +1,19 @@
 package com.example.taskmanager
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.widget.Button
+import android.widget.Spinner
+import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.textfield.TextInputEditText
 import java.util.Calendar
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
 
@@ -162,7 +168,72 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showAddTaskDialog() {
-        // TODO: Implement add task dialog
+        val dialogView = layoutInflater.inflate(R.layout.dialog_add_task, null)
+
+        val inputTitle = dialogView.findViewById<TextInputEditText>(R.id.input_task_title)
+        val spinnerCategory = dialogView.findViewById<Spinner>(R.id.spinner_category)
+        val spinnerPriority = dialogView.findViewById<Spinner>(R.id.spinner_priority)
+        val inputDate = dialogView.findViewById<TextInputEditText>(R.id.input_date)
+        val inputTime = dialogView.findViewById<TextInputEditText>(R.id.input_time)
+        val inputDuration = dialogView.findViewById<TextInputEditText>(R.id.input_duration)
+
+        // Setup Category Spinner
+        val categories = arrayOf("Work", "Personal", "Shopping", "Health", "Finance")
+        val categoryAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, categories)
+        categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerCategory.adapter = categoryAdapter
+
+        // Setup Priority Spinner
+        val priorities = arrayOf("HIGH", "MEDIUM", "LOW")
+        val priorityAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, priorities)
+        priorityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerPriority.adapter = priorityAdapter
+
+        val dialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .create()
+
+        dialogView.findViewById<Button>(R.id.btn_cancel).setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialogView.findViewById<Button>(R.id.btn_save).setOnClickListener {
+            val title = inputTitle.text.toString().trim()
+            val category = spinnerCategory.selectedItem.toString()
+            val priority = spinnerPriority.selectedItem.toString()
+            val dateStr = inputDate.text.toString().trim()
+            val timeStr = inputTime.text.toString().trim()
+            val durationStr = inputDuration.text.toString().trim()
+
+            if (title.isEmpty() || dateStr.isEmpty() || timeStr.isEmpty() || durationStr.isEmpty()) {
+                android.widget.Toast.makeText(this, "Please fill all fields", android.widget.Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            try {
+                val dateFormat = SimpleDateFormat("MM/dd/yyyy", Locale.US)
+                val date = dateFormat.parse(dateStr)
+                val duration = durationStr.toInt()
+
+                val newTask = Task(
+                    title = title,
+                    category = category,
+                    priority = priority,
+                    dueDate = date?.time ?: System.currentTimeMillis(),
+                    dueTime = timeStr,
+                    duration = duration,
+                    isCompleted = false
+                )
+
+                viewModel.insertTask(newTask)
+                dialog.dismiss()
+                android.widget.Toast.makeText(this, "Task added!", android.widget.Toast.LENGTH_SHORT).show()
+            } catch (e: Exception) {
+                android.widget.Toast.makeText(this, "Invalid date format", android.widget.Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        dialog.show()
     }
 
     private fun completeTask(task: Task) {
