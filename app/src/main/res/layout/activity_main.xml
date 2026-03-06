@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_light">
+
+    <!-- Header with Gradient Background -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/gradient_header"
+        android:padding="24dp">
+
+        <!-- Header Title -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/header_date"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/header_title"
+            android:textSize="14sp"
+            android:textColor="@android:color/white"
+            android:alpha="0.9"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Stats Overview -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:spacing="12dp">
+
+            <!-- Stat Card 1: Total Tasks -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:background="@drawable/card_bg_light"
+                android:padding="12dp"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="8"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary"
+                    android:layout_marginBottom="4dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stat_total"
+                    android:textSize="11sp"
+                    android:textColor="@android:color/white"
+                    android:alpha="0.85"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <!-- Stat Card 2: Today's Tasks -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:background="@drawable/card_bg_light"
+                android:padding="12dp"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary"
+                    android:layout_marginBottom="4dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stat_today"
+                    android:textSize="11sp"
+                    android:textColor="@android:color/white"
+                    android:alpha="0.85"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Calendar Section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:background="@android:color/white"
+        android:layout_marginBottom="1dp">
+
+        <!-- Calendar Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/calendar_title"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_light"
+                android:textAllCaps="true"
+                android:letterSpacing="0.05" />
+
+            <ImageButton
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@drawable/button_bg"
+                android:src="@android:drawable/ic_media_previous"
+                android:contentDescription="Previous"
+                android:scaleType="centerInside"
+                android:tint="@color/text_dark"
+                android:layout_marginEnd="8dp" />
+
+            <ImageButton
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@drawable/button_bg"
+                android:src="@android:drawable/ic_media_next"
+                android:contentDescription="Next"
+                android:scaleType="centerInside"
+                android:tint="@color/text_dark" />
+
+        </LinearLayout>
+
+        <!-- Calendar Grid (Simplified - 2 rows of dates) -->
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="7"
+            android:rowCount="3"
+            android:padding="0dp">
+
+            <!-- Day headers -->
+            <TextView android:text="S" android:textAlignment="center" android:textStyle="bold" android:textSize="13sp" android:textColor="@color/text_light" />
+            <TextView android:text="M" android:textAlignment="center" android:textStyle="bold" android:textSize="13sp" android:textColor="@color/text_light" />
+            <TextView android:text="T" android:textAlignment="center" android:textStyle="bold" android:textSize="13sp" android:textColor="@color/text_light" />
+            <TextView android:text="W" android:textAlignment="center" android:textStyle="bold" android:textSize="13sp" android:textColor="@color/text_light" />
+            <TextView android:text="T" android:textAlignment="center" android:textStyle="bold" android:textSize="13sp" android:textColor="@color/text_light" />
+            <TextView android:text="F" android:textAlignment="center" android:textStyle="bold" android:textSize="13sp" android:textColor="@color/text_light" />
+            <TextView android:text="S" android:textAlignment="center" android:textStyle="bold" android:textSize="13sp" android:textColor="@color/text_light" />
+
+            <!-- Sample dates -->
+            <TextView android:text="17" android:textAlignment="center" android:textSize="13sp" android:textColor="@color/text_dark" android:padding="12dp" />
+            <TextView android:text="18" android:textAlignment="center" android:textSize="13sp" android:textColor="@color/text_dark" android:padding="12dp" />
+            <TextView android:text="19" android:textAlignment="center" android:textSize="13sp" android:textColor="@android:color/white" android:padding="12dp" android:background="@drawable/gradient_header" android:textStyle="bold" />
+            <TextView android:text="20" android:textAlignment="center" android:textSize="13sp" android:textColor="@color/text_dark" android:padding="12dp" />
+            <TextView android:text="21" android:textAlignment="center" android:textSize="13sp" android:textColor="@color/text_dark" android:padding="12dp" />
+            <TextView android:text="22" android:textAlignment="center" android:textSize="13sp" android:textColor="@color/text_dark" android:padding="12dp" />
+            <TextView android:text="23" android:textAlignment="center" android:textSize="13sp" android:textColor="@color/text_dark" android:padding="12dp" />
+
+        </GridLayout>
+
+    </LinearLayout>
+
+    <!-- Tab Navigation -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:background="@color/bg_light"
+        android:spacing="8dp">
+
+        <Button
+            android:id="@+id/tab_schedule"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/tab_schedule"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:background="@drawable/gradient_header"
+            android:textColor="@android:color/white"
+            android:padding="10dp"
+            android:stateListAnimator="@null" />
+
+        <Button
+            android:id="@+id/tab_tasks"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/tab_tasks"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:background="@android:color/white"
+            android:textColor="@color/text_light"
+            android:padding="10dp"
+            android:stateListAnimator="@null"
+            android:layout_marginStart="8dp" />
+
+        <Button
+            android:id="@+id/tab_health"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/tab_health"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:background="@android:color/white"
+            android:textColor="@color/text_light"
+            android:padding="10dp"
+            android:stateListAnimator="@null"
+            android:layout_marginStart="8dp" />
+
+    </LinearLayout>
+
+    <!-- Task List (RecyclerView) -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/task_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="16dp"
+        android:clipToPadding="false"
+        android:paddingBottom="80dp" />
+
+    <!-- Floating Action Button -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add_task"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_input_add"
+        android:contentDescription="Add Task"
+        android:backgroundTint="@color/primary"
+        app:tint="@android:color/white"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="24dp"
+        android:elevation="6dp" />
+
+</LinearLayout>

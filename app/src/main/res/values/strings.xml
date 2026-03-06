@@ -1,3 +1,79 @@
 <resources>
-    <string name="app_name">TaskManager</string>
+    <string name="app_name">LifeFlow</string>
+
+    <!-- Header Strings -->
+    <string name="header_title">My Tasks</string>
+    <string name="header_subtitle">You have %d tasks today</string>
+    <string name="header_date">Today\'s Plan</string>
+
+    <!-- Stats Labels -->
+    <string name="stat_total">Total</string>
+    <string name="stat_today">Today</string>
+    <string name="stat_completed">Completed</string>
+    <string name="stat_tasks">Tasks</string>
+    <string name="stat_water">Water Drunk</string>
+    <string name="stat_steps">Steps Walked</string>
+
+    <!-- Tab Titles -->
+    <string name="tab_schedule">Schedule</string>
+    <string name="tab_tasks">Tasks</string>
+    <string name="tab_health">Health</string>
+
+    <!-- Section Titles -->
+    <string name="section_today">Today</string>
+    <string name="section_tomorrow">Tomorrow</string>
+    <string name="section_upcoming">Upcoming</string>
+    <string name="section_time_schedule">Time-Based Schedule</string>
+    <string name="section_todays_tasks">Today\'s Tasks</string>
+    <string name="section_wellness">Today\'s Wellness</string>
+    <string name="section_water_log">Water Log</string>
+    <string name="section_steps_activity">Steps Activity</string>
+
+    <!-- Button Labels -->
+    <string name="btn_add">Add</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_save">Save</string>
+    <string name="btn_delete">Delete</string>
+    <string name="btn_complete">Complete</string>
+
+    <!-- Modal Titles -->
+    <string name="modal_add_task">Add New Task</string>
+    <string name="modal_add_entry">Add New Entry</string>
+    <string name="modal_edit_task">Edit Task</string>
+
+    <!-- Form Labels -->
+    <string name="form_title">Title</string>
+    <string name="form_category">Category</string>
+    <string name="form_priority">Priority</string>
+    <string name="form_date">Date</string>
+    <string name="form_start_time">Start Time</string>
+    <string name="form_end_time">End Time</string>
+    <string name="form_duration">Duration (mins)</string>
+    <string name="form_type">Type</string>
+    <string name="form_description">Description</string>
+
+    <!-- Category Names -->
+    <string name="category_work">Work</string>
+    <string name="category_personal">Personal</string>
+    <string name="category_shopping">Shopping</string>
+    <string name="category_health">Health</string>
+    <string name="category_finance">Finance</string>
+
+    <!-- Priority Levels -->
+    <string name="priority_high">HIGH</string>
+    <string name="priority_medium">MEDIUM</string>
+    <string name="priority_low">LOW</string>
+
+    <!-- Health Metrics -->
+    <string name="metric_water">Water Intake</string>
+    <string name="metric_steps">Steps Counter</string>
+    <string name="metric_water_goal">2.0 L Goal</string>
+    <string name="metric_steps_goal">10,000 Steps Goal</string>
+
+    <!-- Empty State Messages -->
+    <string name="empty_no_tasks">No tasks today</string>
+    <string name="empty_add_task">Tap + to add your first task</string>
+
+    <!-- Calendar Strings -->
+    <string name="calendar_title">December 2024</string>
 </resources>
