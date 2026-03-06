@@ -3,6 +3,7 @@ package com.example.taskmanager
 import android.app.AlertDialog
 import android.os.Bundle
 import android.widget.Button
+import android.widget.FrameLayout
 import android.widget.Spinner
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
@@ -18,6 +19,7 @@ import java.util.Locale
 class MainActivity : AppCompatActivity() {
 
     private lateinit var taskListRecyclerView: RecyclerView
+    private lateinit var healthContainer: FrameLayout
     private lateinit var fabAddTask: FloatingActionButton
     private lateinit var tabSchedule: Button
     private lateinit var tabTasks: Button
@@ -27,6 +29,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var taskAdapter: TaskAdapter
 
     private var currentTab = "schedule"
+    private var healthFragmentShown = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +39,7 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this).get(TaskViewModel::class.java)
 
         taskListRecyclerView = findViewById(R.id.task_list)
+        healthContainer = findViewById(R.id.health_container)
         fabAddTask = findViewById(R.id.fab_add_task)
         tabSchedule = findViewById(R.id.tab_schedule)
         tabTasks = findViewById(R.id.tab_tasks)
@@ -100,6 +104,38 @@ class MainActivity : AppCompatActivity() {
 
         inactiveTab2.setBackgroundColor(getColor(android.R.color.white))
         inactiveTab2.setTextColor(getColor(R.color.text_light))
+
+        when (tabName) {
+            "schedule" -> showScheduleView()
+            "tasks" -> showTasksView()
+            "health" -> showHealthView()
+        }
+    }
+
+    private fun showScheduleView() {
+        taskListRecyclerView.visibility = android.view.View.VISIBLE
+        healthContainer.visibility = android.view.View.GONE
+        fabAddTask.visibility = FloatingActionButton.VISIBLE
+    }
+
+    private fun showTasksView() {
+        taskListRecyclerView.visibility = android.view.View.VISIBLE
+        healthContainer.visibility = android.view.View.GONE
+        fabAddTask.visibility = FloatingActionButton.VISIBLE
+    }
+
+    private fun showHealthView() {
+        taskListRecyclerView.visibility = android.view.View.GONE
+        healthContainer.visibility = android.view.View.VISIBLE
+        fabAddTask.visibility = FloatingActionButton.GONE
+
+        if (!healthFragmentShown) {
+            val healthFragment = HealthFragment()
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.health_container, healthFragment)
+                .commit()
+            healthFragmentShown = true
+        }
     }
 
     private fun addSampleTasks() {
@@ -177,13 +213,11 @@ class MainActivity : AppCompatActivity() {
         val inputTime = dialogView.findViewById<TextInputEditText>(R.id.input_time)
         val inputDuration = dialogView.findViewById<TextInputEditText>(R.id.input_duration)
 
-        // Setup Category Spinner
         val categories = arrayOf("Work", "Personal", "Shopping", "Health", "Finance")
         val categoryAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, categories)
         categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerCategory.adapter = categoryAdapter
 
-        // Setup Priority Spinner
         val priorities = arrayOf("HIGH", "MEDIUM", "LOW")
         val priorityAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, priorities)
         priorityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)

@@ -154,7 +154,7 @@
 
         </LinearLayout>
 
-        <!-- Calendar Grid (Simplified - 2 rows of dates) -->
+        <!-- Calendar Grid -->
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -245,6 +245,14 @@
         android:padding="16dp"
         android:clipToPadding="false"
         android:paddingBottom="80dp" />
+
+    <!-- Health Fragment Container -->
+    <FrameLayout
+        android:id="@+id/health_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:visibility="gone" />
 
     <!-- Floating Action Button -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
